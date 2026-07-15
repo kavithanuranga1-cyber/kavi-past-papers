@@ -1,22 +1,142 @@
-Create a modern, responsive website in English for a technology and AI blog.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavi Past Papers</title>
 
-Requirements:
-- Clean, professional, mobile-friendly design.
-- Homepage with a hero section, featured articles, latest posts, and categories.
-- Categories: AI, Technology, Mobile, Computers, Internet, Software.
-- Search bar.
-- Dark mode and light mode toggle.
-- About Us, Contact Us, Privacy Policy, and Terms pages.
-- Fast loading speed and SEO-friendly structure.
-- Google AdSense-ready layout with ad spaces:
-  - One banner below the header.
-  - One ad inside each article.
-  - One sidebar ad.
-  - One footer banner.
-- Blog article page with featured image, author, date, related posts, and comments section.
-- Social media sharing buttons.
-- Newsletter subscription form.
-- Admin dashboard to add, edit, and delete blog posts.
-- Responsive navigation menu.
-- Use modern colors, smooth animations, and clean typography.
-- Generate all necessary HTML, CSS, JavaScript, and backend structure.
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f4f4;
+}
+
+header{
+background:#0066cc;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+nav{
+background:#004a99;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+
+.hero{
+padding:60px;
+text-align:center;
+background:white;
+}
+
+.hero h1{
+font-size:40px;
+color:#0066cc;
+}
+
+.hero p{
+margin-top:15px;
+font-size:18px;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 25px;
+background:#0066cc;
+color:white;
+text-decoration:none;
+border-radius:6px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:40px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,.1);
+text-align:center;
+}
+
+footer{
+background:#222;
+color:white;
+padding:20px;
+text-align:center;
+margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Kavi Past Papers</h1>
+<p>Free Sri Lankan Past Papers</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Grade 5</a>
+<a href="#">O/L</a>
+<a href="#">A/L</a>
+<a href="#">Contact</a>
+</nav>
+
+<section class="hero">
+<h1>Download Past Papers Free</h1>
+<p>Grade 1-13 | O/L | A/L | Scholarship</p>
+
+<a class="btn" href="#">Browse Papers</a>
+</section>
+
+<section class="cards">
+
+<div class="card">
+<h2>Scholarship</h2>
+<p>Past Papers & Marking Schemes</p>
+</div>
+
+<div class="card">
+<h2>G.C.E O/L</h2>
+<p>All Subjects</p>
+</div>
+
+<div class="card">
+<h2>G.C.E A/L</h2>
+<p>Science • Commerce • Arts</p>
+</div>
+
+<div class="card">
+<h2>Model Papers</h2>
+<p>Practice Papers</p>
+</div>
+
+</section>
+
+<footer>
+© 2026 Kavi Past Papers
+</footer>
+
+</body>
+</html>
