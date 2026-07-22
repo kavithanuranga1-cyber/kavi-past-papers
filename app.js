@@ -2,6 +2,30 @@ const years=['2029','2028','2027','2026','2025','2024','2023'];
 const mediums=['Sinhala','Tamil','English'];
 const terms=['Term 1','Term 2','Term 3'];
 const papers=['Paper 1','Paper 2'];
+const SEARCH_INDEX=[
+ {title:'Grade 1–5',keywords:'grade 1 2 3 4 5 primary sinhala tamil english mathematics environment buddhism hinduism islam catholicism christianity',url:'grade1-5.html'},
+ {title:'Grade 5 Scholarship',keywords:'grade 5 scholarship past papers model papers provincial papers paper 1 paper 2',url:'scholarship.html'},
+ {title:'Grade 6–11',keywords:'grade 6 7 8 9 10 11 sinhala tamil english mathematics science history geography civic health ict business accounting agriculture art music dancing drama religion languages',url:'grade6-11.html'},
+ {title:'G.C.E. O/L',keywords:'ol ordinary level gce sinhala tamil english mathematics science history geography civic health ict business accounting agriculture art music dancing drama religion languages',url:'ol.html'},
+ {title:'Grade 12–13',keywords:'grade 12 13 term test physical science biological science commerce arts engineering technology bio systems technology',url:'grade12-13.html'},
+ {title:'G.C.E. A/L',keywords:'al advanced level gce combined mathematics physics chemistry biology accounting business studies economics arts technology general english common general test',url:'al.html'}
+];
+function initSearch(){
+ const input=el('siteSearch'),button=el('searchButton'),results=el('searchResults');
+ if(!input||!results)return;
+ const run=()=>{
+  const q=input.value.trim().toLowerCase();
+  document.querySelectorAll('.cards .card').forEach(card=>{const hay=(card.textContent+' '+(card.dataset.search||'')).toLowerCase();card.hidden=!!q&&!hay.includes(q)});
+  if(!q){results.hidden=true;results.innerHTML='';return}
+  const matches=SEARCH_INDEX.filter(x=>(x.title+' '+x.keywords).toLowerCase().includes(q)).slice(0,6);
+  results.innerHTML=matches.length?matches.map(x=>`<a href="${x.url}"><strong>${x.title}</strong><span>Open papers</span></a>`).join(''):'<div class="no-results">No matching papers found</div>';
+  results.hidden=false;
+ };
+ input.addEventListener('input',run);button?.addEventListener('click',run);
+ input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();const first=results.querySelector('a');if(first)location.href=first.href}});
+ document.addEventListener('click',e=>{if(!e.target.closest('.header-search'))results.hidden=true});
+}
+
 
 const DATA={
  'grade1-5':{
@@ -60,4 +84,4 @@ function updateResult(){
  if(url){open.href=url;download.href=url;download.setAttribute('download','');open.classList.remove('btn-disabled');download.classList.remove('btn-disabled');msg.textContent='Paper එක සූදානම්. Open හෝ Download කරන්න.'}
  else{open.removeAttribute('href');download.removeAttribute('href');open.classList.add('btn-disabled');download.classList.add('btn-disabled');msg.textContent='මෙම paper එක තවම upload කරලා නැහැ — Coming Soon.'}
 }
-document.addEventListener('DOMContentLoaded',()=>{shared();initCategory()});
+document.addEventListener('DOMContentLoaded',()=>{shared();initSearch();initCategory()});
