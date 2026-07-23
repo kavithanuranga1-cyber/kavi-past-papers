@@ -132,3 +132,77 @@ footer{margin-top:0}.footer-logo{width:190px;max-width:100%;height:auto}
   .photo-card{min-height:290px}
   .category-photo{height:120px}
 }
+
+
+/* ===== Six cards in one desktop row ===== */
+.home-cards,
+.photo-home-cards{
+  grid-template-columns:repeat(6, minmax(0, 1fr)) !important;
+  gap:14px !important;
+  max-width:none !important;
+}
+
+.photo-card{
+  min-height:315px !important;
+  border-radius:16px !important;
+}
+
+.category-photo{
+  height:145px !important;
+}
+
+.photo-card-body{
+  padding:16px 13px 14px !important;
+}
+
+.photo-card h3{
+  font-size:1.08rem !important;
+  margin-bottom:8px !important;
+}
+
+.photo-card p{
+  font-size:.86rem !important;
+  line-height:1.45 !important;
+  min-height:44px !important;
+}
+
+.photo-card .card-open{
+  max-width:140px !important;
+  padding:10px 12px !important;
+  font-size:.9rem !important;
+}
+
+/* Tablet */
+@media(max-width:1050px){
+  .home-cards,
+  .photo-home-cards{
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Mobile: one card per row */
+@media(max-width:650px){
+  .home-cards,
+  .photo-home-cards{
+    grid-template-columns:1fr !important;
+    max-width:420px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .photo-card{
+    min-height:350px !important;
+  }
+
+  .category-photo{
+    height:185px !important;
+  }
+
+  .photo-card h3{
+    font-size:1.25rem !important;
+  }
+
+  .photo-card p{
+    font-size:.98rem !important;
+  }
+}
