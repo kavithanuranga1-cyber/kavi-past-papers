@@ -224,3 +224,34 @@ footer{margin-top:0}.footer-logo{width:190px;max-width:100%;height:auto}
     font-size:1rem !important;
   }
 }
+
+
+/* ===== Dark mode styling for the six home cards ===== */
+[data-theme="dark"] .photo-card{
+  background:#102443 !important;
+  border-color:#294a76 !important;
+  box-shadow:0 10px 28px rgba(0,0,0,.34) !important;
+}
+
+[data-theme="dark"] .photo-card h3{
+  color:#70b7ff !important;
+}
+
+[data-theme="dark"] .photo-card p{
+  color:#e7eef9 !important;
+}
+
+[data-theme="dark"] .photo-card .card-open{
+  background:#10b952 !important;
+  color:#ffffff !important;
+}
+
+[data-theme="dark"] .category-photo{
+  filter:brightness(.82) contrast(1.04) !important;
+  border-bottom-color:#294a76 !important;
+}
+
+[data-theme="dark"] .photo-card:hover{
+  background:#163052 !important;
+  transform:translateY(-4px);
+}
