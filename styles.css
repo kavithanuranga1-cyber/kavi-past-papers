@@ -91,3 +91,44 @@ footer{margin-top:0}.footer-logo{width:190px;max-width:100%;height:auto}
  .compact-features{grid-template-columns:1fr}.compact-features .feature{border-right:0;border-bottom:1px solid var(--border)}
  .compact-features .feature:last-child{border-bottom:0}
 }
+
+
+/* ===== Photo cards only update ===== */
+.photo-home-cards{align-items:stretch}
+.photo-card{
+  padding:0;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:315px;
+  background:var(--surface);
+}
+.category-photo{
+  width:100%;
+  height:145px;
+  display:block;
+  object-fit:cover;
+  border-bottom:1px solid var(--border);
+}
+.photo-card-body{
+  padding:17px 15px 15px;
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  align-items:center;
+}
+.photo-card h3{margin:0 0 8px;color:#0754b8;font-size:1.18rem}
+.photo-card p{margin:0 0 15px;min-height:45px;text-align:center}
+.photo-card .card-open{
+  margin-top:auto;
+  max-width:145px;
+  background:#08ae4f;
+  border-radius:7px;
+}
+.photo-card:hover .category-photo{transform:scale(1.035)}
+.category-photo{transition:transform .25s ease}
+[data-theme="dark"] .photo-card h3{color:#6fb5ff}
+@media(max-width:650px){
+  .photo-card{min-height:290px}
+  .category-photo{height:120px}
+}
