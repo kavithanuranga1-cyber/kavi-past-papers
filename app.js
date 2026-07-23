@@ -49,18 +49,68 @@ function initCategory(){
 }
 function renderStreams(){const box=el('streamTabs');box.innerHTML=Object.keys(STREAMS).map((s,i)=>`<button class="stream-tab ${i===0?'active':''}" data-stream="${s}">${s}</button>`).join('');box.onclick=e=>{if(!e.target.dataset.stream)return;box.querySelectorAll('button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderSubjects(STREAMS[e.target.dataset.stream],document.body.dataset.category);updateResult()}}
 function renderSubjects(items){const box=el('subjectGrid');box.innerHTML=items.map((s,i)=>`<button class="subject-btn ${i===0?'active':''}" data-subject="${s}">${s}</button>`).join('');box.onclick=e=>{if(!e.target.dataset.subject)return;box.querySelectorAll('button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');updateResult()}}
+function ensureResultPanels(){
+ const box=document.querySelector('.result-box');
+ if(!box || box.dataset.twoPanel==='1') return;
+ box.dataset.twoPanel='1';
+ const title=el('resultTitle');
+ const msg=el('resultMessage');
+ const oldActions=box.querySelector('.result-actions');
+ if(oldActions) oldActions.remove();
+
+ const grid=document.createElement('div');
+ grid.className='resource-panels';
+ grid.innerHTML=`
+  <section class="resource-card question-card">
+    <div class="resource-icon">📄</div>
+    <h4>Question Paper</h4>
+    <p id="questionStatus" class="resource-status">Coming Soon</p>
+    <div class="resource-actions">
+      <a id="openPdf" class="btn btn-primary btn-disabled" target="_blank">Open PDF</a>
+      <a id="downloadPdf" class="btn btn-green btn-disabled">Download PDF</a>
+    </div>
+  </section>
+  <section class="resource-card marking-card">
+    <div class="resource-icon">✅</div>
+    <h4>Marking Scheme</h4>
+    <p id="markingStatus" class="resource-status">Coming Soon</p>
+    <div class="resource-actions">
+      <a id="openMarking" class="btn btn-primary btn-disabled" target="_blank">Open Marking Scheme</a>
+      <a id="downloadMarking" class="btn btn-green btn-disabled">Download Marking Scheme</a>
+    </div>
+  </section>`;
+ box.appendChild(grid);
+ if(msg) msg.hidden=true;
+}
+
+function setResourceLink(openEl,downloadEl,url){
+ if(url){
+   openEl.href=url; downloadEl.href=url; downloadEl.setAttribute('download','');
+   openEl.classList.remove('btn-disabled'); downloadEl.classList.remove('btn-disabled');
+ }else{
+   openEl.removeAttribute('href'); downloadEl.removeAttribute('href'); downloadEl.removeAttribute('download');
+   openEl.classList.add('btn-disabled'); downloadEl.classList.add('btn-disabled');
+ }
+}
+
 function updateResult(){
+ ensureResultPanels();
  const key=document.body.dataset.category; const vals=[];
  ['gradeSelect','typeSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
- const sub=el('subjectGrid')?.querySelector('.active')?.dataset.subject||'Subject';vals.push(sub,el('yearSelect')?.value);
+ const sub=el('subjectGrid')?.querySelector('.active')?.dataset.subject||'Subject'; vals.push(sub,el('yearSelect')?.value);
  ['termSelect','mediumSelect','paperSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
  el('resultTitle').textContent=vals.filter(Boolean).join(' – ');
- const lookup=[key,...vals].join('|');const url=window.PAPER_LINKS?.[lookup];
- const open=el('openPdf'),download=el('downloadPdf'),msg=el('resultMessage');
- if(url){open.href=url;download.href=url;download.setAttribute('download','');open.classList.remove('btn-disabled');download.classList.remove('btn-disabled');msg.textContent='Paper එක සූදානම්. Open හෝ Download කරන්න.'}
- else{open.removeAttribute('href');download.removeAttribute('href');open.classList.add('btn-disabled');download.classList.add('btn-disabled');msg.textContent='මෙම paper එක තවම upload කරලා නැහැ — Coming Soon.'}
+ const lookup=[key,...vals].join('|');
+ const paperUrl=window.PAPER_LINKS?.[lookup];
+ const markingUrl=window.MARKING_LINKS?.[lookup];
+ const openPaper=el('openPdf'), downloadPaper=el('downloadPdf');
+ const openMarking=el('openMarking'), downloadMarking=el('downloadMarking');
+ setResourceLink(openPaper,downloadPaper,paperUrl);
+ setResourceLink(openMarking,downloadMarking,markingUrl);
+ el('questionStatus').textContent=paperUrl?'Question Paper එක සූදානම්.':'Question Paper – Coming Soon';
+ el('markingStatus').textContent=markingUrl?'Marking Scheme එක සූදානම්.':'Marking Scheme – Coming Soon';
 }
-document.addEventListener('DOMContentLoaded',()=>{shared();initCategory()});
+document.addEventListener('DOMContentLoaded',()=>{shared();ensureResultPanels();initCategory()});
 
 
 function initHeaderSearch(){
