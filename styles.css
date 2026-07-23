@@ -206,3 +206,64 @@ footer{margin-top:0}.footer-logo{width:190px;max-width:100%;height:auto}
     font-size:.98rem !important;
   }
 }
+
+
+/* ===== Slightly larger card update ===== */
+.home-cards,
+.photo-home-cards{
+  grid-template-columns:repeat(6, minmax(0, 1fr)) !important;
+  gap:12px !important;
+}
+
+.photo-card{
+  min-height:335px !important;
+  border-radius:18px !important;
+}
+
+.category-photo{
+  height:155px !important;
+}
+
+.photo-card-body{
+  padding:18px 14px 16px !important;
+}
+
+.photo-card h3{
+  font-size:1.15rem !important;
+  margin-bottom:9px !important;
+}
+
+.photo-card p{
+  font-size:.9rem !important;
+  line-height:1.48 !important;
+  min-height:46px !important;
+}
+
+.photo-card .card-open{
+  max-width:145px !important;
+  padding:10px 14px !important;
+  font-size:.93rem !important;
+}
+
+@media(max-width:1050px){
+  .home-cards,
+  .photo-home-cards{
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media(max-width:650px){
+  .home-cards,
+  .photo-home-cards{
+    grid-template-columns:1fr !important;
+    max-width:430px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+  .photo-card{
+    min-height:360px !important;
+  }
+  .category-photo{
+    height:190px !important;
+  }
+}
