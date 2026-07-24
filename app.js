@@ -2,6 +2,17 @@ const years=['2035','2034','2033','2032','2031','2030','2029','2028','2027','202
 const mediums=['Sinhala','Tamil','English'];
 const terms=['Term 1','Term 2','Term 3'];
 const papers=['Paper 1','Paper 2'];
+const provinces=[
+ 'Western Province',
+ 'Central Province',
+ 'Southern Province',
+ 'Northern Province',
+ 'Eastern Province',
+ 'North Western Province',
+ 'North Central Province',
+ 'Uva Province',
+ 'Sabaragamuwa Province'
+];
 
 const DATA={
  'grade1-5':{
@@ -10,13 +21,13 @@ const DATA={
  },
  scholarship:{title:'Grade 5 Scholarship Papers',paper:true,simple:true},
  'grade6-11':{
-  title:'Grade 6–11 Term Test Papers', grades:['Grade 6','Grade 7','Grade 8','Grade 9','Grade 10','Grade 11'], term:true,
+  title:'Grade 6–11 Term Test Papers', province:true, grades:['Grade 6','Grade 7','Grade 8','Grade 9','Grade 10','Grade 11'], term:true,
   subjects:['Sinhala Language & Literature','Tamil Language & Literature','English Language','Mathematics','Science','History','Geography','Civic Education','Health & Physical Education','ICT','Practical & Technical Skills','Business & Accounting Studies','Entrepreneurship Studies','Agriculture & Food Technology','Home Economics','Art','Eastern Music','Western Music','Dancing','Drama & Theatre','Buddhism','Hinduism','Islam','Catholicism','Christianity','Second National Language – Sinhala','Second National Language – Tamil','French','German','Japanese','Chinese','Arabic','Pali','Sanskrit']
  },
  ol:{title:'G.C.E. O/L Past Papers',paper:true,
   subjects:['Sinhala Language & Literature','Tamil Language & Literature','English Language','Mathematics','Science','History','Geography','Civic Education','Health & Physical Education','ICT','Business & Accounting Studies','Entrepreneurship Studies','Home Economics','Agriculture & Food Technology','Art','Eastern Music','Western Music','Dancing','Bharatha Dancing','Drama & Theatre','Buddhism','Catholicism','Christianity','Hinduism','Islam','Second National Language – Sinhala','Second National Language – Tamil','Japanese','French','German','Chinese','Arabic','Pali','Sanskrit']
  },
- 'grade12-13':{title:'Grade 12–13 Term Test Papers',grades:['Grade 12','Grade 13'],term:true,streams:true},
+ 'grade12-13':{title:'Grade 12–13 Term Test Papers',province:true,grades:['Grade 12','Grade 13'],term:true,streams:true},
  al:{title:'G.C.E. A/L Past Papers',paper:true,streams:true}
 };
 const STREAMS={
@@ -38,6 +49,7 @@ function initCategory(){
  const key=document.body.dataset.category, cfg=DATA[key]; if(!cfg)return;
  el('pageTitle').textContent=cfg.title; document.title=cfg.title+' | Kavi Past Papers';
  fillSelect('yearSelect',years);fillSelect('mediumSelect',mediums);
+ if(cfg.province){el('provinceWrap').hidden=false;fillSelect('provinceSelect',provinces)}
  if(cfg.grades){el('gradeWrap').hidden=false;fillSelect('gradeSelect',cfg.grades)}
  if(cfg.types){el('typeWrap').hidden=false;fillSelect('typeSelect',cfg.types)}
  if(cfg.term){el('termWrap').hidden=false;fillSelect('termSelect',terms)}
@@ -54,7 +66,7 @@ function initCategory(){
  }else{
    renderSubjects(subjects,key);
  }
- ['gradeSelect','typeSelect','yearSelect','termSelect','mediumSelect','paperSelect'].forEach(id=>el(id)?.addEventListener('change',updateResult));
+ ['provinceSelect','gradeSelect','typeSelect','yearSelect','termSelect','mediumSelect','paperSelect'].forEach(id=>el(id)?.addEventListener('change',updateResult));
  updateResult();
 }
 function renderStreams(){const box=el('streamTabs');box.innerHTML=Object.keys(STREAMS).map((s,i)=>`<button class="stream-tab ${i===0?'active':''}" data-stream="${s}">${s}</button>`).join('');box.onclick=e=>{if(!e.target.dataset.stream)return;box.querySelectorAll('button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderSubjects(STREAMS[e.target.dataset.stream],document.body.dataset.category);updateResult()}}
@@ -105,15 +117,32 @@ function setResourceLink(openEl,downloadEl,url){
 
 function updateResult(){
  ensureResultPanels();
- const key=document.body.dataset.category; const vals=[];
+ const key=document.body.dataset.category;
+ const vals=[];
+
  if(key==='scholarship'){
    vals.push(el('yearSelect')?.value);
-   ['mediumSelect','paperSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
+   ['mediumSelect','paperSelect'].forEach(id=>{
+     if(el(id)&&!el(id).closest('.filter-group').hidden) vals.push(el(id).value);
+   });
+ }else if(key==='grade6-11' || key==='grade12-13'){
+   // Requested order: Province → Grade → Year → Term → Medium → Subject
+   ['provinceSelect','gradeSelect','yearSelect','termSelect','mediumSelect'].forEach(id=>{
+     if(el(id)&&!el(id).closest('.filter-group').hidden) vals.push(el(id).value);
+   });
+   const sub=el('subjectGrid')?.querySelector('.active')?.dataset.subject||'Subject';
+   vals.push(sub);
  }else{
-   ['gradeSelect','typeSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
-   const sub=el('subjectGrid')?.querySelector('.active')?.dataset.subject||'Subject'; vals.push(sub,el('yearSelect')?.value);
-   ['termSelect','mediumSelect','paperSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
+   ['gradeSelect','typeSelect'].forEach(id=>{
+     if(el(id)&&!el(id).closest('.filter-group').hidden) vals.push(el(id).value);
+   });
+   const sub=el('subjectGrid')?.querySelector('.active')?.dataset.subject||'Subject';
+   vals.push(sub,el('yearSelect')?.value);
+   ['termSelect','mediumSelect','paperSelect'].forEach(id=>{
+     if(el(id)&&!el(id).closest('.filter-group').hidden) vals.push(el(id).value);
+   });
  }
+
  el('resultTitle').textContent=vals.filter(Boolean).join(' – ');
  const lookup=[key,...vals].join('|');
  const paperUrl=window.PAPER_LINKS?.[lookup];
@@ -125,6 +154,7 @@ function updateResult(){
  el('questionStatus').textContent=paperUrl?'Question Paper එක සූදානම්.':'Question Paper – Coming Soon';
  el('markingStatus').textContent=markingUrl?'Marking Scheme එක සූදානම්.':'Marking Scheme – Coming Soon';
 }
+
 document.addEventListener('DOMContentLoaded',()=>{shared();ensureResultPanels();initCategory()});
 
 
