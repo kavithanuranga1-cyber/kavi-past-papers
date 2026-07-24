@@ -8,7 +8,7 @@ const DATA={
   title:'Grade 1–5 Past Papers', grades:['Grade 1','Grade 2','Grade 3','Grade 4','Grade 5'],
   subjects:['Sinhala','Tamil','English','Mathematics','Environment','Buddhism','Hinduism','Islam','Catholicism','Christianity'], term:true
  },
- scholarship:{title:'Grade 5 Scholarship Papers',types:['Past Papers','Model Papers','Provincial Papers'],subjects:['Scholarship Paper'],paper:true},
+ scholarship:{title:'Grade 5 Scholarship Papers',paper:true,simple:true},
  'grade6-11':{
   title:'Grade 6–11 Term Test Papers', grades:['Grade 6','Grade 7','Grade 8','Grade 9','Grade 10','Grade 11'], term:true,
   subjects:['Sinhala Language & Literature','Tamil Language & Literature','English Language','Mathematics','Science','History','Geography','Civic Education','Health & Physical Education','ICT','Practical & Technical Skills','Business & Accounting Studies','Entrepreneurship Studies','Agriculture & Food Technology','Home Economics','Art','Eastern Music','Western Music','Dancing','Drama & Theatre','Buddhism','Hinduism','Islam','Catholicism','Christianity','Second National Language – Sinhala','Second National Language – Tamil','French','German','Japanese','Chinese','Arabic','Pali','Sanskrit']
@@ -44,7 +44,17 @@ function initCategory(){
  if(cfg.paper){el('paperWrap').hidden=false;fillSelect('paperSelect',papers)}
  let subjects=cfg.subjects||[];
  if(cfg.streams){el('streamArea').hidden=false;renderStreams();subjects=STREAMS[Object.keys(STREAMS)[0]]}
- renderSubjects(subjects,key);['gradeSelect','typeSelect','yearSelect','termSelect','mediumSelect','paperSelect'].forEach(id=>el(id)?.addEventListener('change',updateResult));
+ if(cfg.simple){
+   const subjectGrid=el('subjectGrid');
+   if(subjectGrid){
+     subjectGrid.hidden=true;
+     const heading=subjectGrid.previousElementSibling;
+     if(heading && heading.tagName==='H2') heading.hidden=true;
+   }
+ }else{
+   renderSubjects(subjects,key);
+ }
+ ['gradeSelect','typeSelect','yearSelect','termSelect','mediumSelect','paperSelect'].forEach(id=>el(id)?.addEventListener('change',updateResult));
  updateResult();
 }
 function renderStreams(){const box=el('streamTabs');box.innerHTML=Object.keys(STREAMS).map((s,i)=>`<button class="stream-tab ${i===0?'active':''}" data-stream="${s}">${s}</button>`).join('');box.onclick=e=>{if(!e.target.dataset.stream)return;box.querySelectorAll('button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderSubjects(STREAMS[e.target.dataset.stream],document.body.dataset.category);updateResult()}}
@@ -96,9 +106,14 @@ function setResourceLink(openEl,downloadEl,url){
 function updateResult(){
  ensureResultPanels();
  const key=document.body.dataset.category; const vals=[];
- ['gradeSelect','typeSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
- const sub=el('subjectGrid')?.querySelector('.active')?.dataset.subject||'Subject'; vals.push(sub,el('yearSelect')?.value);
- ['termSelect','mediumSelect','paperSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
+ if(key==='scholarship'){
+   vals.push(el('yearSelect')?.value);
+   ['mediumSelect','paperSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
+ }else{
+   ['gradeSelect','typeSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
+   const sub=el('subjectGrid')?.querySelector('.active')?.dataset.subject||'Subject'; vals.push(sub,el('yearSelect')?.value);
+   ['termSelect','mediumSelect','paperSelect'].forEach(id=>{if(el(id)&&!el(id).closest('.filter-group').hidden)vals.push(el(id).value)});
+ }
  el('resultTitle').textContent=vals.filter(Boolean).join(' – ');
  const lookup=[key,...vals].join('|');
  const paperUrl=window.PAPER_LINKS?.[lookup];
