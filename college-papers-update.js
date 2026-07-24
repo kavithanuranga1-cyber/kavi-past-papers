@@ -27,9 +27,31 @@
       <option>Royal College – Colombo 07</option>
     </select>`;
 
-  const provinceWrap = document.getElementById('provinceWrap');
-  if(provinceWrap) provinceWrap.insertAdjacentElement('afterend', collegeWrap);
-  else sourceWrap.insertAdjacentElement('afterend', collegeWrap);
+  let provinceWrap = document.getElementById('provinceWrap');
+
+  // Grade 1–5 page did not have a province selector in the original layout.
+  // Create it here so Provincial Papers always shows all 9 provinces.
+  if(!provinceWrap){
+    provinceWrap = document.createElement('div');
+    provinceWrap.id = 'provinceWrap';
+    provinceWrap.className = 'filter-group';
+    provinceWrap.innerHTML = `
+      <label>Province</label>
+      <select id="provinceSelect">
+        <option value="Western Province">Western Province</option>
+        <option value="Central Province">Central Province</option>
+        <option value="Southern Province">Southern Province</option>
+        <option value="Northern Province">Northern Province</option>
+        <option value="Eastern Province">Eastern Province</option>
+        <option value="North Western Province">North Western Province</option>
+        <option value="North Central Province">North Central Province</option>
+        <option value="Uva Province">Uva Province</option>
+        <option value="Sabaragamuwa Province">Sabaragamuwa Province</option>
+      </select>`;
+    sourceWrap.insertAdjacentElement('afterend', provinceWrap);
+  }
+
+  provinceWrap.insertAdjacentElement('afterend', collegeWrap);
 
   const sourceSelect = document.getElementById('sourceSelect');
   const collegeSelect = document.getElementById('collegeSelect');
@@ -98,4 +120,8 @@
 
   sourceSelect.addEventListener('change', toggleSource);
   collegeSelect.addEventListener('change', window.updateResult);
+  document.getElementById('provinceSelect')?.addEventListener('change', window.updateResult);
+
+  // Set the correct initial visibility when the page opens.
+  toggleSource();
 })();
