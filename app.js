@@ -2,6 +2,7 @@ const years=['2035','2034','2033','2032','2031','2030','2029','2028','2027','202
 const mediums=['Sinhala','Tamil','English'];
 const terms=['Term 1','Term 2','Term 3'];
 const papers=['Paper 1','Paper 2'];
+const examPapers=['Paper 1','Paper 2','Paper 3'];
 const provinces=[
  'Western Province',
  'Central Province',
@@ -53,7 +54,10 @@ function initCategory(){
  if(cfg.grades){el('gradeWrap').hidden=false;fillSelect('gradeSelect',cfg.grades)}
  if(cfg.types){el('typeWrap').hidden=false;fillSelect('typeSelect',cfg.types)}
  if(cfg.term){el('termWrap').hidden=false;fillSelect('termSelect',terms)}
- if(cfg.paper){el('paperWrap').hidden=false;fillSelect('paperSelect',papers)}
+ if(cfg.paper){
+  el('paperWrap').hidden=false;
+  fillSelect('paperSelect',(key==='ol'||key==='al')?examPapers:papers);
+ }
  let subjects=cfg.subjects||[];
  if(cfg.streams){el('streamArea').hidden=false;renderStreams();subjects=STREAMS[Object.keys(STREAMS)[0]]}
  if(cfg.simple){
