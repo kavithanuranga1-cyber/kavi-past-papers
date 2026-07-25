@@ -8,7 +8,9 @@ window.PAPER_LINKS = {
   "ol|Mathematics|2022|Sinhala|Paper 1": "pdfs/ol/2022/2022_OL_Mathematics_Sinhala_Paper_1.pdf",
   "ol|Mathematics|2022|Sinhala|Paper 2": "pdfs/ol/2022/2022_OL_Mathematics_Sinhala_Paper_2.pdf",
   "ol|Science|2022|Sinhala|Paper 1": "pdfs/ol/2022/2022_OL_Science_Sinhala_Paper_1.pdf",
-  "ol|Science|2022|Sinhala|Paper 2": "pdfs/ol/2022/2022_OL_Science_Sinhala_Paper_2.pdf"
+  "ol|Science|2022|Sinhala|Paper 2": "pdfs/ol/2022/2022_OL_Science_Sinhala_Paper_2.pdf",
+  "ol|Geography|2022|Sinhala|Paper 1": "pdfs/ol/2022/2022_OL_Geography_Sinhala_Paper_1.pdf",
+  "ol|Geography|2022|Sinhala|Paper 2": "pdfs/ol/2022/2022_OL_Geography_Sinhala_Paper_2.pdf"
 };
 
 /* Add marking scheme links using the same lookup key when files are available. */
