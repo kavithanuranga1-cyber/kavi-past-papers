@@ -1,0 +1,19 @@
+Grade 6 Sinhala Medium update
+
+Included (no third-party website watermark detected):
+- 2019 Southern Province Art - Term 2
+- 2019 North Western Province Art - Term 2
+- 2019 North Western Province Mathematics - Term 3
+- 2019 Western Province Eastern Music - Year End / Term 3
+- 2020 Western Province (Matugama Zone) Art - Term 2
+- 2022(2023) North Western Province Art - Term 3
+- 2022(2023) North Western Province Eastern Music - Term 3
+
+Excluded because a third-party website watermark/branding was detected:
+- Document(5).PDF
+- Document(7).PDF
+- Document(11).PDF
+
+Website changes:
+- Years extended to 2019.
+- Separate Eastern Music (පෙරදිග සංගීතය) and Western Music (අපරදිග සංගීතය) subjects added.

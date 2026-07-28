@@ -1,4 +1,4 @@
-const years=['2035','2034','2033','2032','2031','2030','2029','2028','2027','2026','2025','2024','2023','2022'];
+const years=['2035','2034','2033','2032','2031','2030','2029','2028','2027','2026','2025','2024','2023','2022','2021','2020','2019'];
 const mediums=['Sinhala','Tamil','English'];
 const terms=['Term 1','Term 2','Term 3'];
 const papers=['Paper 1','Paper 2'];
@@ -23,10 +23,10 @@ const DATA={
  scholarship:{title:'Grade 5 Scholarship Papers',paper:true,simple:true},
  'grade6-11':{
   title:'Grade 6–11 Term Test Papers', province:true, grades:['Grade 6','Grade 7','Grade 8','Grade 9','Grade 10','Grade 11'], term:true,
-  subjects:['Sinhala Language & Literature','Sinhala Literature','Tamil Language & Literature','Tamil Literature','English Language','English Literature','Mathematics','Science','History','Geography','Civic Education','Health & Physical Education','ICT','Practical & Technical Skills','Business & Accounting Studies','Entrepreneurship Studies','Agriculture & Food Technology','Home Economics','Art','Eastern Music','Western Music','Dancing','Drama & Theatre','Buddhism','Hinduism','Islam','Catholicism','Christianity','Second National Language – Sinhala','Second National Language – Tamil','French','German','Japanese','Chinese','Arabic','Pali','Sanskrit']
+  subjects:['Sinhala Language & Literature','Sinhala Literature','Tamil Language & Literature','Tamil Literature','English Language','English Literature','Mathematics','Science','History','Geography','Civic Education','Health & Physical Education','ICT','Practical & Technical Skills','Business & Accounting Studies','Entrepreneurship Studies','Agriculture & Food Technology','Home Economics','Art','Eastern Music (පෙරදිග සංගීතය)','Western Music (අපරදිග සංගීතය)','Dancing','Drama & Theatre','Buddhism','Hinduism','Islam','Catholicism','Christianity','Second National Language – Sinhala','Second National Language – Tamil','French','German','Japanese','Chinese','Arabic','Pali','Sanskrit']
  },
  ol:{title:'G.C.E. O/L Past Papers',paper:true,
-  subjects:['Sinhala Language & Literature','Sinhala Literature','Tamil Language & Literature','Tamil Literature','English Language','English Literature','Mathematics','Science','History','Geography','Civic Education','Health & Physical Education','ICT','Business & Accounting Studies','Entrepreneurship Studies','Home Economics','Agriculture & Food Technology','Art','Eastern Music','Western Music','Dancing','Bharatha Dancing','Drama & Theatre','Buddhism','Catholicism','Christianity','Hinduism','Islam','Second National Language – Sinhala','Second National Language – Tamil','Japanese','French','German','Chinese','Arabic','Pali','Sanskrit']
+  subjects:['Sinhala Language & Literature','Sinhala Literature','Tamil Language & Literature','Tamil Literature','English Language','English Literature','Mathematics','Science','History','Geography','Civic Education','Health & Physical Education','ICT','Business & Accounting Studies','Entrepreneurship Studies','Home Economics','Agriculture & Food Technology','Art','Eastern Music (පෙරදිග සංගීතය)','Western Music (අපරදිග සංගීතය)','Dancing','Bharatha Dancing','Drama & Theatre','Buddhism','Catholicism','Christianity','Hinduism','Islam','Second National Language – Sinhala','Second National Language – Tamil','Japanese','French','German','Chinese','Arabic','Pali','Sanskrit']
  },
  'grade12-13':{title:'Grade 12–13 Term Test Papers',province:true,grades:['Grade 12','Grade 13'],term:true,streams:true},
  al:{title:'G.C.E. A/L Past Papers',paper:true,streams:true}
