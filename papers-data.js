@@ -15,6 +15,7 @@ window.PAPER_LINKS = {
   "grade6-11|North Western Province|Grade 6|2019|Term 3|Sinhala|Mathematics": "pdfs/grade6-11/grade6/2019/2019_Grade6_NorthWestern_Mathematics_Term3_Sinhala.pdf",
   "grade6-11|Western Province|Grade 6|2019|Term 3|Sinhala|Eastern Music (පෙරදිග සංගීතය)": "pdfs/grade6-11/grade6/2019/2019_Grade6_Western_EasternMusic_Term3_Sinhala.pdf",
   "grade6-11|Western Province|Grade 6|2020|Term 2|Sinhala|Art": "pdfs/grade6-11/grade6/2020/2020_Grade6_Western_Art_Term2_Sinhala.pdf",
+  "education-zone|grade6-11|Matugama Education Zone|Grade 6|2020|Term 2|Sinhala|Art": "pdfs/grade6-11/education-zones/matugama/grade6/2020/2020_Grade6_Matugama_Art_Term2_Sinhala.pdf",
   "grade6-11|North Western Province|Grade 6|2022|Term 3|Sinhala|Art": "pdfs/grade6-11/grade6/2022/2022_Grade6_NorthWestern_Art_Term3_Sinhala.pdf",
   "grade6-11|North Western Province|Grade 6|2022|Term 3|Sinhala|Eastern Music (පෙරදිග සංගීතය)": "pdfs/grade6-11/grade6/2022/2022_Grade6_NorthWestern_EasternMusic_Term3_Sinhala.pdf",
 

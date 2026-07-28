@@ -13,6 +13,7 @@
     <label>Category</label>
     <select id="sourceSelect">
       <option value="provincial">Provincial Papers</option>
+      <option value="education-zone">Education Zone</option>
       <option value="college">College Papers</option>
     </select>`;
   filters.prepend(sourceWrap);
@@ -51,10 +52,22 @@
     sourceWrap.insertAdjacentElement('afterend', provinceWrap);
   }
 
-  provinceWrap.insertAdjacentElement('afterend', collegeWrap);
+  const zoneWrap = document.createElement('div');
+  zoneWrap.id = 'zoneWrap';
+  zoneWrap.className = 'filter-group';
+  zoneWrap.hidden = true;
+  zoneWrap.innerHTML = `
+    <label>Zone</label>
+    <select id="zoneSelect">
+      <option>Matugama Education Zone</option>
+    </select>`;
+
+  provinceWrap.insertAdjacentElement('afterend', zoneWrap);
+  zoneWrap.insertAdjacentElement('afterend', collegeWrap);
 
   const sourceSelect = document.getElementById('sourceSelect');
   const collegeSelect = document.getElementById('collegeSelect');
+  const zoneSelect = document.getElementById('zoneSelect');
   const baseUpdateResult = window.updateResult;
 
   function setResource(openEl, downloadEl, url){
@@ -76,20 +89,24 @@
 
   function toggleSource(){
     const isCollege = sourceSelect.value === 'college';
+    const isZone = sourceSelect.value === 'education-zone';
     collegeWrap.hidden = !isCollege;
-    if(provinceWrap) provinceWrap.hidden = isCollege;
+    zoneWrap.hidden = !isZone;
+    if(provinceWrap) provinceWrap.hidden = isCollege || isZone;
     window.updateResult();
   }
 
   window.updateResult = function(){
-    if(sourceSelect.value !== 'college'){
+    if(sourceSelect.value === 'provincial'){
       if(typeof baseUpdateResult === 'function') baseUpdateResult();
       return;
     }
 
     if(typeof window.ensureResultPanels === 'function') window.ensureResultPanels();
 
-    const values = [collegeSelect.value];
+    const isCollege = sourceSelect.value === 'college';
+    const values = [isCollege ? collegeSelect.value : zoneSelect.value];
+
     const grade = document.getElementById('gradeSelect');
     const year = document.getElementById('yearSelect');
     const term = document.getElementById('termSelect');
@@ -103,9 +120,10 @@
     values.push(subject);
 
     const title = document.getElementById('resultTitle');
-    if(title) title.textContent = ['College Papers', ...values].join(' – ');
+    const categoryLabel = isCollege ? 'College Papers' : 'Education Zone';
+    if(title) title.textContent = [categoryLabel, ...values].join(' – ');
 
-    const lookup = ['college', category, ...values].join('|');
+    const lookup = [isCollege ? 'college' : 'education-zone', category, ...values].join('|');
     const paperUrl = window.PAPER_LINKS?.[lookup];
     const markingUrl = window.MARKING_LINKS?.[lookup];
 
@@ -120,6 +138,7 @@
 
   sourceSelect.addEventListener('change', toggleSource);
   collegeSelect.addEventListener('change', window.updateResult);
+  zoneSelect.addEventListener('change', window.updateResult);
   document.getElementById('provinceSelect')?.addEventListener('change', window.updateResult);
 
   // Set the correct initial visibility when the page opens.

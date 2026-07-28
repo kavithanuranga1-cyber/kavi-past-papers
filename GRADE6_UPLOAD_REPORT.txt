@@ -17,3 +17,7 @@ Excluded because a third-party website watermark/branding was detected:
 Website changes:
 - Years extended to 2019.
 - Separate Eastern Music (පෙරදිග සංගීතය) and Western Music (අපරදිග සංගීතය) subjects added.
+
+Education Zone category added.
+Zone: Matugama Education Zone
+Paper: Grade 6 | 2020 | Term 2 | Sinhala | Art
