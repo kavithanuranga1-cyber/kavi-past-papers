@@ -19,6 +19,8 @@ window.PAPER_LINKS = {
   "grade6-11|North Western Province|Grade 6|2022|Term 3|Sinhala|Art": "pdfs/grade6-11/grade6/2022/2022_Grade6_NorthWestern_Art_Term3_Sinhala.pdf",
   "grade6-11|North Western Province|Grade 6|2022|Term 3|Sinhala|Eastern Music (පෙරදිග සංගීතය)": "pdfs/grade6-11/grade6/2022/2022_Grade6_NorthWestern_EasternMusic_Term3_Sinhala.pdf",
 
+  "college|grade6-11|Jaffna Hindu College|Grade 6|2023|Term 1|English|English Language": "pdfs/grade6-11/uploaded-batch/D136_2023_English_Language.pdf",
+
 };
 
 /* Add marking scheme links using the same lookup key when files are available. */

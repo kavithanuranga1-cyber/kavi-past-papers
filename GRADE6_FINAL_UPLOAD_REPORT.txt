@@ -1,0 +1,33 @@
+KAVI PAST PAPERS - FINAL GRADE 6 UPLOAD REPORT
+=======================================================
+Unique PDFs reviewed: 171
+PDFs included: 155
+PDFs excluded: 16
+
+Included by source:
+- Provincial Papers: 135
+- Education Zone: 18
+- College Papers: 2
+
+Excluded files:
+- Document(7).PDF: Private-site/CamScanner branding or compilation detected
+- Document(11).PDF: Private-site/CamScanner branding or compilation detected
+- Document(12)(1).PDF: Private-site/CamScanner branding or compilation detected
+- Document(46).PDF: Private-site/CamScanner branding or compilation detected
+- Document(54).PDF: Private-site/CamScanner branding or compilation detected
+- Document(66).PDF: Private-site/CamScanner branding or compilation detected
+- Document(68).PDF: Private-site/CamScanner branding or compilation detected
+- Document(73).PDF: Private-site/CamScanner branding or compilation detected
+- Document(89).PDF: Private-site/CamScanner branding or compilation detected
+- Document(122).PDF: Private-site/CamScanner branding or compilation detected
+- Document(123).PDF: Private-site/CamScanner branding or compilation detected
+- Document(128).PDF: Private-site/CamScanner branding or compilation detected
+- Document(133).PDF: Private-site/CamScanner branding or compilation detected
+- Document(149).PDF: Private-site/CamScanner branding or compilation detected
+- Document(156)(1).PDF: Private-site/CamScanner branding or compilation detected
+- Document(162)(1).PDF: Private-site/CamScanner branding or compilation detected
+
+CamScanner inclusion requested by user:
+- Document(107).PDF: Grade 6 Science, Western Province, Year End Evaluation 2023 (2024); included with its existing CamScanner watermark.
+
+Important: Papers whose cover details could not be safely inferred are shown as Unknown / Needs Review on all-papers.html instead of being placed in a wrong category.

@@ -25,6 +25,7 @@
   collegeWrap.innerHTML = `
     <label>College</label>
     <select id="collegeSelect">
+      <option>Jaffna Hindu College</option>
       <option>Royal College – Colombo 07</option>
     </select>`;
 
