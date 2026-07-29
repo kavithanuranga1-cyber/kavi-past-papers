@@ -1,0 +1,11 @@
+KAVI PAST PAPERS - SMALL UPLOAD PART 1 OF 14
+Files: 32
+Approximate extracted size: 16.2 MB
+
+1. Extract this ZIP.
+2. Open the extracted folder.
+3. In the GitHub repository main page, select Add file > Upload files.
+4. Select everything INSIDE this extracted folder.
+5. Upload and click Commit changes.
+6. Continue with the next numbered part.
+Do not upload the ZIP file itself. Do not rename files or folders.
