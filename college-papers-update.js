@@ -128,12 +128,24 @@
     const paperUrl = window.PAPER_LINKS?.[lookup];
     const markingUrl = window.MARKING_LINKS?.[lookup];
 
-    setResource(document.getElementById('openPdf'), document.getElementById('downloadPdf'), paperUrl);
+    const uploadedRecords = typeof window.confirmedUploadedPapers === 'function' ? window.confirmedUploadedPapers({
+      source: isCollege ? 'College Papers' : 'Education Zone',
+      institution: isCollege ? collegeSelect.value : zoneSelect.value,
+      grade: grade?.value,
+      year: year?.value,
+      term: term?.value,
+      medium: medium?.value,
+      subject
+    }) : [];
+
+    if(typeof window.renderConfirmedPapers === 'function') window.renderConfirmedPapers(uploadedRecords);
+
+    setResource(document.getElementById('openPdf'), document.getElementById('downloadPdf'), uploadedRecords.length ? null : paperUrl);
     setResource(document.getElementById('openMarking'), document.getElementById('downloadMarking'), markingUrl);
 
     const questionStatus = document.getElementById('questionStatus');
     const markingStatus = document.getElementById('markingStatus');
-    if(questionStatus) questionStatus.textContent = paperUrl ? 'Question Paper එක සූදානම්.' : 'Question Paper – Coming Soon';
+    if(questionStatus) questionStatus.textContent = uploadedRecords.length ? `${uploadedRecords.length} confirmed paper${uploadedRecords.length === 1 ? '' : 's'} available.` : (paperUrl ? 'Question Paper එක සූදානම්.' : 'Question Paper – Coming Soon');
     if(markingStatus) markingStatus.textContent = markingUrl ? 'Marking Scheme එක සූදානම්.' : 'Marking Scheme – Coming Soon';
   };
 

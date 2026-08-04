@@ -1,7 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Uploaded Grade 6 Papers | Kavi Past Papers</title><link rel="stylesheet" href="style.css"><style>
-.library{max-width:1200px;margin:24px auto;padding:0 16px}.library-controls{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:10px;margin:18px 0}.library-controls input,.library-controls select{padding:12px;border:1px solid #bbb;border-radius:8px}.paper-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}.paper-card{border:1px solid #ddd;border-radius:12px;padding:15px;background:var(--card-bg,#fff);box-shadow:0 2px 8px #0001}.paper-card h3{font-size:16px;margin:0 0 8px}.meta{font-size:13px;line-height:1.55;opacity:.8}.actions{display:flex;gap:8px;margin-top:12px}.actions a{padding:9px 12px;border-radius:7px;text-decoration:none}.open{background:#1565c0;color:#fff}.download{background:#28a745;color:#fff}.notice{padding:12px;border-radius:8px;background:#fff3cd;margin:12px 0}@media(max-width:800px){.library-controls{grid-template-columns:1fr}.paper-grid{grid-template-columns:1fr}}</style></head>
-<body><header class="site-header"><a class="brand" href="index.html">Kavi Past Papers</a><nav><a href="grade6-11.html">Grade 6-11</a><a href="all-papers.html">Uploaded Papers</a></nav></header><main class="library"><h1>Grade 6 Uploaded Paper Library</h1><p class="notice">Papers with clear cover-page details are categorized. Items marked “Needs Review” are still available here without guessing their province, year, term, or subject.</p><div class="library-controls"><input id="q" placeholder="Search subject, province, zone, college or document number"><select id="source"><option value="">All categories</option></select><select id="year"><option value="">All years</option></select><select id="term"><option value="">All terms</option></select><select id="subject"><option value="">All subjects</option></select></div><p id="count"></p><div id="grid" class="paper-grid"></div></main><script src="uploaded-papers-data.js"></script><script>
-const P=window.UPLOADED_PAPERS||[];const $=id=>document.getElementById(id);function opts(id,key){const a=[...new Set(P.map(x=>x[key]).filter(Boolean))].sort();$(id).innerHTML += a.map(x=>`<option>${x}</option>`).join('')}
-function init(){['source','year','term','subject'].forEach(id=>opts(id,id));['q','source','year','term','subject'].forEach(id=>$(id).addEventListener(id==='q'?'input':'change',render));render()}
-function render(){const q=$('q').value.toLowerCase();const f=P.filter(x=>(!$('source').value||x.source===$('source').value)&&(!$('year').value||x.year===$('year').value)&&(!$('term').value||x.term===$('term').value)&&(!$('subject').value||x.subject===$('subject').value)&&(!q||JSON.stringify(x).toLowerCase().includes(q)));$('count').textContent=`${f.length} papers`; $('grid').innerHTML=f.map(x=>`<article class="paper-card"><h3>${x.subject}</h3><div class="meta"><b>${x.source}</b><br>${x.institution}<br>${x.grade} - ${x.year} - ${x.term} - ${x.medium}<br>Uploaded file: Document ${x.id} - ${x.pages} pages</div><div class="actions"><a class="open" target="_blank" href="${x.url}">Open</a><a class="download" download href="${x.url}">Download</a></div></article>`).join('')||'<p>No matching papers.</p>'}
-init();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Uploaded Grade 6 Papers | Kavi Past Papers</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .library-header{background:#071a3b;border-bottom:1px solid rgba(255,255,255,.13)}
+    .library-nav{width:min(1160px,92%);min-height:72px;margin:auto;display:flex;align-items:center;gap:20px}
+    .library-header .brand{color:#fff}
+    .library-links{display:flex;align-items:center;gap:20px;margin-left:auto}
+    .library-links a{color:#eef5ff;font-weight:700}
+    .library-links a:hover,.library-links a[aria-current="page"]{color:#3fa0ff}
+    .library{max-width:1200px;margin:0 auto;padding:40px 4% 56px}
+    .library h1{margin:0 0 10px;font-size:clamp(2rem,4vw,3rem)}
+    .library-intro{margin-bottom:22px}
+    .library-controls{display:grid;grid-template-columns:2fr repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+    .library-controls input,.library-controls select{width:100%;min-width:0;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text)}
+    .paper-count{color:var(--muted);font-weight:800}
+    .paper-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .paper-card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:16px;padding:18px;background:var(--surface);box-shadow:var(--shadow)}
+    .paper-card h3{font-size:1.05rem;line-height:1.4;margin:0 0 10px}
+    .meta{font-size:.86rem;line-height:1.65;color:var(--muted)}
+    .actions{display:flex;gap:9px;margin-top:auto;padding-top:16px}
+    .actions a,.actions span{flex:1;display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:9px;font-weight:800;text-align:center}
+    .open{background:var(--primary);color:#fff}.download{background:var(--green);color:#fff}
+    .file-unavailable{margin:16px 0 0;padding:10px 12px;border:1px solid #e3a3a3;border-radius:9px;background:#fff0f0;color:#a12626;font-weight:800;text-align:center}
+    .unavailable-action{background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:not-allowed;opacity:.8}
+    [data-theme="dark"] .file-unavailable{background:#3a1d27;border-color:#75404c;color:#ffb8c2}
+    @media(max-width:900px){.library-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.library-controls input{grid-column:1/-1}}
+    @media(max-width:600px){
+      .library-nav{min-height:64px;flex-wrap:wrap;padding:12px 0}.library-header .brand{width:100%;font-size:1.08rem}
+      .library-links{width:100%;margin-left:0;justify-content:space-between;gap:12px}.library-links a{font-size:.92rem}
+      .library{padding:30px 4% 44px}.library-controls{grid-template-columns:1fr;gap:10px}.library-controls input{grid-column:auto}
+      .paper-grid{grid-template-columns:1fr}.paper-card{padding:16px}.actions{flex-direction:column}.actions a,.actions span{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header class="library-header">
+    <div class="library-nav">
+      <a class="brand" href="index.html">KAVI PAST PAPERS</a>
+      <nav class="library-links" aria-label="Uploaded papers navigation">
+        <a href="index.html">Home</a>
+        <a href="grade6-11.html">Grade 6–11</a>
+      </nav>
+    </div>
+  </header>
+  <main class="library">
+    <h1>Grade 6 Uploaded Paper Library</h1>
+    <p class="notice library-intro">Papers with clear cover-page details are categorized. Items marked “Needs Review” are still available here without guessing their province, year, term, or subject.</p>
+    <div class="library-controls">
+      <input id="q" aria-label="Search uploaded papers" placeholder="Search subject, province, zone, college or document number">
+      <select id="source" aria-label="Filter by category"><option value="">All categories</option></select>
+      <select id="year" aria-label="Filter by year"><option value="">All years</option></select>
+      <select id="term" aria-label="Filter by term"><option value="">All terms</option></select>
+      <select id="subject" aria-label="Filter by subject"><option value="">All subjects</option></select>
+    </div>
+    <p id="count" class="paper-count" aria-live="polite"></p>
+    <div id="grid" class="paper-grid"></div>
+  </main>
+  <script src="uploaded-papers-data.js"></script>
+  <script>
+    const P=window.UPLOADED_PAPERS||[];
+    const MISSING_FILES=new Set([
+      'pdfs/grade6-11/uploaded-batch/D001_2020_Art.pdf',
+      'pdfs/grade6-11/uploaded-batch/D007_2019_Dancing.pdf',
+      'pdfs/grade6-11/uploaded-batch/D014_2019_Buddhism.pdf',
+      'pdfs/grade6-11/uploaded-batch/D014_Unknown_Other.pdf',
+      'pdfs/grade6-11/uploaded-batch/D045_2023_Sinhala_Language_Literature.pdf',
+      'pdfs/grade6-11/uploaded-batch/D050_2022_Mathematics.pdf',
+      'pdfs/grade6-11/uploaded-batch/D061_2022_Mathematics.pdf',
+      'pdfs/grade6-11/uploaded-batch/D065_2019_Art.pdf',
+      'pdfs/grade6-11/uploaded-batch/D075_2019_Other.pdf',
+      'pdfs/grade6-11/uploaded-batch/D076_Unknown_Other.pdf',
+      'pdfs/grade6-11/uploaded-batch/D086_2019_Christianity.pdf',
+      'pdfs/grade6-11/uploaded-batch/D090_2021_Sinhala_Language_Literature.pdf',
+      'pdfs/grade6-11/uploaded-batch/D131_2019_Christianity.pdf',
+      'pdfs/grade6-11/uploaded-batch/D151_2023_Dancing.pdf'
+    ]);
+    const $=id=>document.getElementById(id);
+    function opts(id,key){const a=[...new Set(P.map(x=>x[key]).filter(Boolean))].sort();$(id).innerHTML+=a.map(x=>`<option>${x}</option>`).join('')}
+    function init(){['source','year','term','subject'].forEach(id=>opts(id,id));['q','source','year','term','subject'].forEach(id=>$(id).addEventListener(id==='q'?'input':'change',render));render()}
+    function actions(x){
+      if(MISSING_FILES.has(x.url))return '<p class="file-unavailable">File unavailable</p><div class="actions" aria-label="File unavailable"><span class="unavailable-action" aria-disabled="true">Open</span><span class="unavailable-action" aria-disabled="true">Download</span></div>';
+      return `<div class="actions"><a class="open" target="_blank" rel="noopener" href="${x.url}">Open</a><a class="download" download href="${x.url}">Download</a></div>`;
+    }
+    function render(){const q=$('q').value.toLowerCase();const f=P.filter(x=>(!$('source').value||x.source===$('source').value)&&(!$('year').value||x.year===$('year').value)&&(!$('term').value||x.term===$('term').value)&&(!$('subject').value||x.subject===$('subject').value)&&(!q||JSON.stringify(x).toLowerCase().includes(q)));$('count').textContent=`${f.length} papers`;$('grid').innerHTML=f.map(x=>`<article class="paper-card"><h3>${x.subject}</h3><div class="meta"><b>${x.source}</b><br>${x.institution}<br>${x.grade} – ${x.year} – ${x.term} – ${x.medium}<br>Uploaded file: Document ${x.id} – ${x.pages} pages</div>${actions(x)}</article>`).join('')||'<p>No matching papers.</p>'}
+    init();
+  </script>
+</body>
+</html>

@@ -49,7 +49,7 @@ function shared(){initTheme();el('themeToggle')?.addEventListener('click',toggle
 function initCategory(){
  const key=document.body.dataset.category, cfg=DATA[key]; if(!cfg)return;
  el('pageTitle').textContent=cfg.title; document.title=cfg.title+' | Kavi Past Papers';
- fillSelect('yearSelect',years);fillSelect('mediumSelect',mediums);
+ fillSelect('yearSelect',key==='grade6-11'?[...years,'2018']:years);fillSelect('mediumSelect',mediums);
  if(cfg.province){el('provinceWrap').hidden=false;fillSelect('provinceSelect',provinces)}
  if(cfg.grades){el('gradeWrap').hidden=false;fillSelect('gradeSelect',cfg.grades)}
  if(cfg.types){el('typeWrap').hidden=false;fillSelect('typeSelect',cfg.types)}
@@ -119,6 +119,51 @@ function setResourceLink(openEl,downloadEl,url){
  }
 }
 
+const UNAVAILABLE_UPLOADED_FILES=new Set([
+ 'pdfs/grade6-11/uploaded-batch/D001_2020_Art.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D007_2019_Dancing.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D014_2019_Buddhism.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D014_Unknown_Other.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D045_2023_Sinhala_Language_Literature.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D050_2022_Mathematics.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D061_2022_Mathematics.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D065_2019_Art.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D075_2019_Other.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D076_Unknown_Other.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D086_2019_Christianity.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D090_2021_Sinhala_Language_Literature.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D131_2019_Christianity.pdf',
+ 'pdfs/grade6-11/uploaded-batch/D151_2023_Dancing.pdf'
+]);
+
+function confirmedUploadedPapers(criteria){
+ const source=window.UPLOADED_PAPERS||[];
+ const seen=new Set();
+ return source.filter(p=>{
+   const unclear=/unknown|needs review/i.test(p.institution)||p.year==='Unknown'||p.term==='Unknown'||p.subject==='Other';
+   if(unclear||UNAVAILABLE_UPLOADED_FILES.has(p.url)||seen.has(p.url)) return false;
+   const matches=Object.entries(criteria).every(([key,value])=>p[key]===value);
+   if(matches) seen.add(p.url);
+   return matches;
+ });
+}
+
+function renderConfirmedPapers(records){
+ const questionCard=document.querySelector('.question-card');
+ const actions=questionCard?.querySelector('.resource-actions');
+ let list=el('confirmedPaperList');
+ if(!questionCard||!actions) return;
+ if(!list){
+   list=document.createElement('div');
+   list.id='confirmedPaperList';
+   list.className='confirmed-paper-list';
+   actions.insertAdjacentElement('beforebegin',list);
+ }
+ if(!records.length){list.innerHTML='';list.hidden=true;actions.hidden=false;return}
+ list.hidden=false;actions.hidden=true;
+ list.innerHTML=records.map((p,index)=>`<div class="confirmed-paper-item"><span class="confirmed-paper-name">Paper ${index+1} · Document ${p.id}</span><a class="btn btn-primary" target="_blank" rel="noopener" href="${p.url}">Open</a><a class="btn btn-green" download href="${p.url}">Download</a></div>`).join('');
+}
+
 function updateResult(){
  ensureResultPanels();
  const key=document.body.dataset.category;
@@ -153,9 +198,15 @@ function updateResult(){
  const markingUrl=window.MARKING_LINKS?.[lookup];
  const openPaper=el('openPdf'), downloadPaper=el('downloadPdf');
  const openMarking=el('openMarking'), downloadMarking=el('downloadMarking');
- setResourceLink(openPaper,downloadPaper,paperUrl);
+ const uploadedRecords=key==='grade6-11'?confirmedUploadedPapers({
+   source:'Provincial Papers',institution:el('provinceSelect').value,grade:el('gradeSelect').value,
+   year:el('yearSelect').value,term:el('termSelect').value,medium:el('mediumSelect').value,
+   subject:el('subjectGrid')?.querySelector('.active')?.dataset.subject||'Subject'
+ }):[];
+ renderConfirmedPapers(uploadedRecords);
+ setResourceLink(openPaper,downloadPaper,uploadedRecords.length?null:paperUrl);
  setResourceLink(openMarking,downloadMarking,markingUrl);
- el('questionStatus').textContent=paperUrl?'Question Paper එක සූදානම්.':'Question Paper – Coming Soon';
+ el('questionStatus').textContent=uploadedRecords.length?`${uploadedRecords.length} confirmed paper${uploadedRecords.length===1?'':'s'} available.`:(paperUrl?'Question Paper එක සූදානම්.':'Question Paper – Coming Soon');
  el('markingStatus').textContent=markingUrl?'Marking Scheme එක සූදානම්.':'Marking Scheme – Coming Soon';
 }
 

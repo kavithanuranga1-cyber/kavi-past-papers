@@ -294,3 +294,14 @@ footer{margin-top:0}.footer-logo{width:190px;max-width:100%;height:auto}
   .resource-card{min-height:210px;padding:20px}
   .resource-actions .btn{min-width:100%}
 }
+
+/* Confirmed uploaded papers shown inside their main Grade 6 categories */
+.confirmed-paper-list{display:grid;gap:10px;width:100%;margin:0 0 16px}
+.confirmed-paper-item{display:flex;align-items:center;gap:10px;width:100%;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.confirmed-paper-name{min-width:0;margin-right:auto;font-weight:800;color:var(--text)}
+.confirmed-paper-item .btn{flex:0 0 auto;min-width:92px;padding:9px 12px;font-size:.88rem}
+[data-theme="dark"] .confirmed-paper-item{background:#102743;border-color:#31557f}
+@media(max-width:600px){
+  .confirmed-paper-item{align-items:stretch;flex-direction:column}
+  .confirmed-paper-item .btn{width:100%;min-width:0}
+}
