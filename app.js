@@ -136,10 +136,37 @@ const UNAVAILABLE_UPLOADED_FILES=new Set([
  'pdfs/grade6-11/uploaded-batch/D151_2023_Dancing.pdf'
 ]);
 
+// Display-only corrections verified from the paper PDFs. Keep the imported
+// uploaded-paper dataset unchanged and apply these values only while filtering.
+const VERIFIED_UPLOADED_DISPLAY_CORRECTIONS=new Map([
+ ['pdfs/grade6-11/uploaded-batch/D012_2019_Art.pdf',{subject:'Mathematics'}],
+ ['pdfs/grade6-11/uploaded-batch/D019_2019_Dancing.pdf',{subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D026_2019_Health_Physical_Education.pdf',{subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D047_2020_Health_Physical_Education.pdf',{subject:'Sinhala Language & Literature'}],
+ ['pdfs/grade6-11/uploaded-batch/D055_2019_Christianity.pdf',{subject:'History'}],
+ ['pdfs/grade6-11/uploaded-batch/D057_2019_Art.pdf',{subject:'History'}],
+ ['pdfs/grade6-11/uploaded-batch/D078_2020_Drama_Theatre.pdf',{subject:'Eastern Music (පෙරදිග සංගීතය)'}],
+ ['pdfs/grade6-11/uploaded-batch/D079_2019_Drama_Theatre.pdf',{subject:'Eastern Music (පෙරදිග සංගීතය)'}],
+ ['pdfs/grade6-11/uploaded-batch/D117_2020_Science.pdf',{subject:'Mathematics'}],
+ ['pdfs/grade6-11/uploaded-batch/D118_2019_Art.pdf',{subject:'Mathematics'}],
+ ['pdfs/grade6-11/uploaded-batch/D129_2023_English_Language.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2023',term:'Term 3',medium:'Sinhala',subject:'Catholicism'}],
+ ['pdfs/grade6-11/uploaded-batch/D132_2023_Dancing.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2020',term:'Term 3',subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D154_2020_Art.pdf',{subject:'Drama & Theatre'}],
+ ['pdfs/grade6-11/uploaded-batch/D155_2019_Art.pdf',{subject:'Drama & Theatre'}],
+ ['pdfs/grade6-11/uploaded-batch/D157_2020_Dancing.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 2',subject:'Drama & Theatre'}],
+ ['pdfs/grade6-11/uploaded-batch/D158_2019_Science.pdf',{subject:'Geography'}],
+ ['pdfs/grade6-11/uploaded-batch/D159_2023_Dancing.pdf',{subject:'Geography'}]
+]);
+
+function uploadedPaperForDisplay(paper){
+ const correction=VERIFIED_UPLOADED_DISPLAY_CORRECTIONS.get(paper.url);
+ return correction?{...paper,...correction}:paper;
+}
+
 function confirmedUploadedPapers(criteria){
  const source=window.UPLOADED_PAPERS||[];
  const seen=new Set();
- return source.filter(p=>{
+ return source.map(uploadedPaperForDisplay).filter(p=>{
    const unclear=/unknown|needs review/i.test(p.institution)||p.year==='Unknown'||p.term==='Unknown'||p.subject==='Other';
    if(unclear||UNAVAILABLE_UPLOADED_FILES.has(p.url)||seen.has(p.url)) return false;
    const matches=Object.entries(criteria).every(([key,value])=>p[key]===value);
