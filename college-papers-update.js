@@ -1,4 +1,4 @@
-(function(){
+document.addEventListener('DOMContentLoaded',()=>{
   const category = document.body.dataset.category;
   const supported = ['grade1-5','grade6-11','grade12-13'];
   if(!supported.includes(category)) return;
@@ -69,7 +69,6 @@
   const sourceSelect = document.getElementById('sourceSelect');
   const collegeSelect = document.getElementById('collegeSelect');
   const zoneSelect = document.getElementById('zoneSelect');
-  const baseUpdateResult = window.updateResult;
 
   function setResource(openEl, downloadEl, url){
     if(!openEl || !downloadEl) return;
@@ -94,16 +93,11 @@
     collegeWrap.hidden = !isCollege;
     zoneWrap.hidden = !isZone;
     if(provinceWrap) provinceWrap.hidden = isCollege || isZone;
-    window.updateResult();
+    updateResult();
   }
 
-  window.updateResult = function(){
-    if(sourceSelect.value === 'provincial'){
-      if(typeof baseUpdateResult === 'function') baseUpdateResult();
-      return;
-    }
-
-    if(typeof window.ensureResultPanels === 'function') window.ensureResultPanels();
+  function renderSourceResult(){
+    window.KaviPapers?.ensureResultPanels();
 
     const isCollege = sourceSelect.value === 'college';
     const values = [isCollege ? collegeSelect.value : zoneSelect.value];
@@ -128,7 +122,7 @@
     const paperUrl = window.PAPER_LINKS?.[lookup];
     const markingUrl = window.MARKING_LINKS?.[lookup];
 
-    const uploadedRecords = typeof window.confirmedUploadedPapers === 'function' ? window.confirmedUploadedPapers({
+    const uploadedRecords = window.KaviPapers?.confirmedUploadedPapers({
       source: isCollege ? 'College Papers' : 'Education Zone',
       institution: isCollege ? collegeSelect.value : zoneSelect.value,
       grade: grade?.value,
@@ -136,9 +130,9 @@
       term: term?.value,
       medium: medium?.value,
       subject
-    }) : [];
+    }) || [];
 
-    if(typeof window.renderConfirmedPapers === 'function') window.renderConfirmedPapers(uploadedRecords);
+    window.KaviPapers?.renderConfirmedPapers(uploadedRecords);
 
     setResource(document.getElementById('openPdf'), document.getElementById('downloadPdf'), uploadedRecords.length ? null : paperUrl);
     setResource(document.getElementById('openMarking'), document.getElementById('downloadMarking'), markingUrl);
@@ -147,13 +141,17 @@
     const markingStatus = document.getElementById('markingStatus');
     if(questionStatus) questionStatus.textContent = uploadedRecords.length ? `${uploadedRecords.length} confirmed paper${uploadedRecords.length === 1 ? '' : 's'} available.` : (paperUrl ? 'Question Paper එක සූදානම්.' : 'Question Paper – Coming Soon');
     if(markingStatus) markingStatus.textContent = markingUrl ? 'Marking Scheme එක සූදානම්.' : 'Marking Scheme – Coming Soon';
+  }
+
+  window.KaviCategorySource = {
+    isNonProvincial: () => sourceSelect.value !== 'provincial',
+    render: renderSourceResult
   };
 
   sourceSelect.addEventListener('change', toggleSource);
-  collegeSelect.addEventListener('change', window.updateResult);
-  zoneSelect.addEventListener('change', window.updateResult);
-  document.getElementById('provinceSelect')?.addEventListener('change', window.updateResult);
+  collegeSelect.addEventListener('change', updateResult);
+  zoneSelect.addEventListener('change', updateResult);
 
   // Set the correct initial visibility when the page opens.
   toggleSource();
-})();
+});

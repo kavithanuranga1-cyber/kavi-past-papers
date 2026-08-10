@@ -167,6 +167,12 @@ function renderConfirmedPapers(records){
 function updateResult(){
  ensureResultPanels();
  const key=document.body.dataset.category;
+
+ if(key==='grade6-11' && window.KaviCategorySource?.isNonProvincial()){
+   window.KaviCategorySource.render();
+   return;
+ }
+
  const vals=[];
 
  if(key==='scholarship'){
@@ -209,6 +215,10 @@ function updateResult(){
  el('questionStatus').textContent=uploadedRecords.length?`${uploadedRecords.length} confirmed paper${uploadedRecords.length===1?'':'s'} available.`:(paperUrl?'Question Paper එක සූදානම්.':'Question Paper – Coming Soon');
  el('markingStatus').textContent=markingUrl?'Marking Scheme එක සූදානම්.':'Marking Scheme – Coming Soon';
 }
+
+// Expose the shared renderer explicitly for the category-source controller.
+// This avoids relying on browser-specific global function binding behaviour.
+window.KaviPapers={confirmedUploadedPapers,renderConfirmedPapers,ensureResultPanels};
 
 document.addEventListener('DOMContentLoaded',()=>{shared();ensureResultPanels();initCategory()});
 
