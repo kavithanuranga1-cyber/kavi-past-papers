@@ -139,24 +139,128 @@ const UNAVAILABLE_UPLOADED_FILES=new Set([
 // Display-only corrections verified from the paper PDFs. Keep the imported
 // uploaded-paper dataset unchanged and apply these values only while filtering.
 const VERIFIED_UPLOADED_DISPLAY_CORRECTIONS=new Map([
+ ['pdfs/grade6-11/uploaded-batch/D003_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Art'}],
+ ['pdfs/grade6-11/uploaded-batch/D005_2019_Buddhism.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Buddhism'}],
+ ['pdfs/grade6-11/uploaded-batch/D006_2019_Art.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Art'}],
+ ['pdfs/grade6-11/uploaded-batch/D008_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Art'}],
+ ['pdfs/grade6-11/uploaded-batch/D009_2019_Buddhism.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Buddhism'}],
+ ['pdfs/grade6-11/uploaded-batch/D009_Unknown_Art.pdf',{source:'Education Zone',institution:'Matugama Education Zone',year:'2020',term:'Term 2',medium:'Sinhala',subject:'Art'}],
+ ['pdfs/grade6-11/uploaded-batch/D010_2019_Art.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Art'}],
+ ['pdfs/grade6-11/uploaded-batch/D011_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2020',term:'Term 2',medium:'Sinhala',subject:'Buddhism'}],
  ['pdfs/grade6-11/uploaded-batch/D012_2019_Art.pdf',{subject:'Mathematics'}],
+ ['pdfs/grade6-11/uploaded-batch/D013_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Buddhism'}],
+ ['pdfs/grade6-11/uploaded-batch/D015_2021_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2021',term:'Term 3',medium:'Sinhala',subject:'Buddhism'}],
+ ['pdfs/grade6-11/uploaded-batch/D016_2019_Buddhism.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Buddhism'}],
+ ['pdfs/grade6-11/uploaded-batch/D017_Unknown_Buddhism.pdf',{source:'Provincial Papers',institution:'North Central Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Buddhism'}],
+ ['pdfs/grade6-11/uploaded-batch/D018_Unknown_Buddhism.pdf',{source:'Education Zone',institution:'Matugama Education Zone',year:'2023',term:'Term 2',medium:'Sinhala',subject:'Buddhism'}],
  ['pdfs/grade6-11/uploaded-batch/D019_2019_Dancing.pdf',{subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D021_2019_Health_Physical_Education.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D023_Unknown_Other.pdf',{source:'Education Zone',institution:'Matugama Education Zone',year:'2023',term:'Term 2',medium:'Sinhala',subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D024_Unknown_Other.pdf',{source:'Education Zone',institution:'Matugama Education Zone',year:'2023',term:'Term 2',medium:'Sinhala',subject:'Civic Education'}],
  ['pdfs/grade6-11/uploaded-batch/D026_2019_Health_Physical_Education.pdf',{subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D027_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2023',term:'Term 3',medium:'Sinhala',subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D029_Unknown_English_Language.pdf',{source:'Provincial Papers',institution:'North Central Province',year:'2019',term:'Term 2',medium:'English',subject:'English Language'}],
+ ['pdfs/grade6-11/uploaded-batch/D030_2020_Other.pdf',{source:'Education Zone',institution:'Matugama Education Zone',year:'2020',term:'Term 2',medium:'English',subject:'English Language'}],
+ ['pdfs/grade6-11/uploaded-batch/D031_2019_English_Language.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'English',subject:'English Language'}],
+ ['pdfs/grade6-11/uploaded-batch/D032_2019_Other.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 2',medium:'English',subject:'English Language'}],
+ ['pdfs/grade6-11/uploaded-batch/D036_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Dancing'}],
+ ['pdfs/grade6-11/uploaded-batch/D037_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Dancing'}],
+ ['pdfs/grade6-11/uploaded-batch/D038_2019_Other.pdf',{source:'Provincial Papers',institution:'Central Province',year:'2019',term:'Term 3',medium:'Tamil',subject:'Second National Language – Tamil'}],
+ ['pdfs/grade6-11/uploaded-batch/D039_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2022',term:'Term 3',medium:'Tamil',subject:'Second National Language – Tamil'}],
+ ['pdfs/grade6-11/uploaded-batch/D040_2021_Islam.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2021',term:'Term 3',medium:'Sinhala',subject:'Islam'}],
+ ['pdfs/grade6-11/uploaded-batch/D041_2019_Dancing.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Dancing'}],
+ ['pdfs/grade6-11/uploaded-batch/D043_2023_Mathematics.pdf',{source:'College Papers',institution:'Royal College Horana',year:'2023',term:'Term 1',medium:'Sinhala',subject:'ICT'}],
  ['pdfs/grade6-11/uploaded-batch/D047_2020_Health_Physical_Education.pdf',{subject:'Sinhala Language & Literature'}],
+ ['pdfs/grade6-11/uploaded-batch/D048_2019_Sinhala_Language_Literature.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Sinhala Language & Literature'}],
+ ['pdfs/grade6-11/uploaded-batch/D049_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Sinhala Language & Literature'}],
+ ['pdfs/grade6-11/uploaded-batch/D051_2019_Other.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 1',medium:'Sinhala',subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D052_2019_Christianity.pdf',{source:'Provincial Papers',institution:'Central Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D053_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Civic Education'}],
  ['pdfs/grade6-11/uploaded-batch/D055_2019_Christianity.pdf',{subject:'History'}],
+ ['pdfs/grade6-11/uploaded-batch/D056_Unknown_Art.pdf',{source:'Education Zone',institution:'Matugama Education Zone',year:'2023',term:'Term 2',medium:'Sinhala',subject:'History'}],
  ['pdfs/grade6-11/uploaded-batch/D057_2019_Art.pdf',{subject:'History'}],
+ ['pdfs/grade6-11/uploaded-batch/D058_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'History'}],
+ ['pdfs/grade6-11/uploaded-batch/D059_2019_Other.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 1',medium:'Sinhala',subject:'Mathematics'}],
+ ['pdfs/grade6-11/uploaded-batch/D063_2019_Drama_Theatre.pdf',{source:'Provincial Papers',institution:'Central Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Eastern Music (පෙරදිග සංගීතය)'}],
+ ['pdfs/grade6-11/uploaded-batch/D064_2019_Drama_Theatre.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Eastern Music (පෙරදිග සංගීතය)'}],
+ ['pdfs/grade6-11/uploaded-batch/D067_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Geography'}],
+ ['pdfs/grade6-11/uploaded-batch/D069_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Islam'}],
+ ['pdfs/grade6-11/uploaded-batch/D070_2019_Islam.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Islam'}],
+ ['pdfs/grade6-11/uploaded-batch/D071_2018_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2018',term:'Term 2',medium:'Sinhala',subject:'Christianity'}],
+ ['pdfs/grade6-11/uploaded-batch/D072_2022_Mathematics.pdf',{source:'College Papers',institution:'Kuli/J.R. Jayawardena National School',year:'2022',term:'Term 1',medium:'Sinhala',subject:'ICT'}],
+ ['pdfs/grade6-11/uploaded-batch/D074_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2023',term:'Term 3',medium:'Sinhala',subject:'History'}],
+ ['pdfs/grade6-11/uploaded-batch/D077_2019_Drama_Theatre.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Eastern Music (පෙරදිග සංගීතය)'}],
  ['pdfs/grade6-11/uploaded-batch/D078_2020_Drama_Theatre.pdf',{subject:'Eastern Music (පෙරදිග සංගීතය)'}],
  ['pdfs/grade6-11/uploaded-batch/D079_2019_Drama_Theatre.pdf',{subject:'Eastern Music (පෙරදිග සංගීතය)'}],
+ ['pdfs/grade6-11/uploaded-batch/D080_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2020',term:'Term 2',medium:'Tamil',subject:'Second National Language – Tamil'}],
+ ['pdfs/grade6-11/uploaded-batch/D085_Unknown_Catholicism.pdf',{source:'Provincial Papers',institution:'North Central Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Catholicism'}],
+ ['pdfs/grade6-11/uploaded-batch/D091_2019_Sinhala_Language_Literature.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Sinhala Language & Literature'}],
+ ['pdfs/grade6-11/uploaded-batch/D092_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Sinhala Language & Literature'}],
+ ['pdfs/grade6-11/uploaded-batch/D093_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Sinhala Language & Literature'}],
+ ['pdfs/grade6-11/uploaded-batch/D095_2019_Art.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'History'}],
+ ['pdfs/grade6-11/uploaded-batch/D096_2019_Other.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 3',medium:'Tamil',subject:'Second National Language – Tamil'}],
+ ['pdfs/grade6-11/uploaded-batch/D097_2019_Other.pdf',{source:'Provincial Papers',institution:'Central Province',year:'2019',term:'Term 3',medium:'Tamil',subject:'Second National Language – Tamil'}],
+ ['pdfs/grade6-11/uploaded-batch/D098_2019_Other.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 3',medium:'Tamil',subject:'Second National Language – Tamil'}],
+ ['pdfs/grade6-11/uploaded-batch/D099_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Health & Physical Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D101_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Health & Physical Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D103_2019_Health_Physical_Education.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Health & Physical Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D104_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Science'}],
+ ['pdfs/grade6-11/uploaded-batch/D105_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Science'}],
+ ['pdfs/grade6-11/uploaded-batch/D108_2021_Health_Physical_Education.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2021',term:'Term 3',medium:'Sinhala',subject:'Science'}],
+ ['pdfs/grade6-11/uploaded-batch/D111_2019_Science.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Science'}],
+ ['pdfs/grade6-11/uploaded-batch/D113_Unknown_Sinhala_Language_Literature.pdf',{source:'Provincial Papers',institution:'North Central Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Sinhala Language & Literature'}],
+ ['pdfs/grade6-11/uploaded-batch/D116_2021_Mathematics.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2021',term:'Term 3',medium:'Sinhala',subject:'Mathematics'}],
  ['pdfs/grade6-11/uploaded-batch/D117_2020_Science.pdf',{subject:'Mathematics'}],
  ['pdfs/grade6-11/uploaded-batch/D118_2019_Art.pdf',{subject:'Mathematics'}],
- ['pdfs/grade6-11/uploaded-batch/D129_2023_English_Language.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2023',term:'Term 3',medium:'Sinhala',subject:'Catholicism'}],
+ ['pdfs/grade6-11/uploaded-batch/D119_2019_Other.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Mathematics'}],
+ ['pdfs/grade6-11/uploaded-batch/D120_2019_Other.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 1',medium:'Sinhala',subject:'Christianity'}],
+ ['pdfs/grade6-11/uploaded-batch/D121_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Health & Physical Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D124_2023_Mathematics.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2023',term:'Term 3',medium:'Sinhala',subject:'Mathematics'}],
+ ['pdfs/grade6-11/uploaded-batch/D126_2020_Other.pdf',{source:'Education Zone',institution:'Matugama Education Zone',year:'2020',term:'Term 2',medium:'Sinhala',subject:'Mathematics'}],
+ ['pdfs/grade6-11/uploaded-batch/D127_2020_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Catholicism'}],
+ ['pdfs/grade6-11/uploaded-batch/D129_2023_English_Language.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2021',term:'Term 3',medium:'Sinhala',subject:'Catholicism'}],
+ ['pdfs/grade6-11/uploaded-batch/D130_Unknown_Other.pdf',{source:'Provincial Papers',institution:'Western Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Catholicism'}],
  ['pdfs/grade6-11/uploaded-batch/D132_2023_Dancing.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2020',term:'Term 3',subject:'Civic Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D135_2023_English_Language.pdf',{source:'Provincial Papers',institution:'Central Province',year:'2019',term:'Term 3',medium:'English',subject:'English Language'}],
+ ['pdfs/grade6-11/uploaded-batch/D136_2023_English_Language.pdf',{source:'Education Zone',institution:'Matugama Education Zone',year:'2023',term:'Term 2',medium:'English',subject:'English Language'}],
+ ['pdfs/grade6-11/uploaded-batch/D142_2022_Mathematics.pdf',{source:'Provincial Papers',institution:'North Western Province',year:'2022',term:'Term 3',medium:'Sinhala',subject:'Health & Physical Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D145_Unknown_Health_Physical_Education.pdf',{source:'Provincial Papers',institution:'North Central Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Health & Physical Education'}],
+ ['pdfs/grade6-11/uploaded-batch/D147_2019_Dancing.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 3',medium:'Sinhala',subject:'Dancing'}],
+ ['pdfs/grade6-11/uploaded-batch/D148_2019_Dancing.pdf',{source:'Provincial Papers',institution:'North Central Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Dancing'}],
  ['pdfs/grade6-11/uploaded-batch/D154_2020_Art.pdf',{subject:'Drama & Theatre'}],
  ['pdfs/grade6-11/uploaded-batch/D155_2019_Art.pdf',{subject:'Drama & Theatre'}],
  ['pdfs/grade6-11/uploaded-batch/D157_2020_Dancing.pdf',{source:'Provincial Papers',institution:'Southern Province',year:'2019',term:'Term 2',subject:'Drama & Theatre'}],
  ['pdfs/grade6-11/uploaded-batch/D158_2019_Science.pdf',{subject:'Geography'}],
- ['pdfs/grade6-11/uploaded-batch/D159_2023_Dancing.pdf',{subject:'Geography'}]
+ ['pdfs/grade6-11/uploaded-batch/D159_2023_Dancing.pdf',{source:'Provincial Papers',institution:'North Central Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Geography'}]
 ]);
+
+// Official public resources are linked to their e-Thaksalawa pages only.
+// No external PDF is copied, downloaded, or exposed as a local download.
+const OFFICIAL_EXTERNAL_PAPERS=[
+ {id:'ETH-47728',filename:'Eg06_Mat_TP2_12_NWP_2024.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2024',term:'Term 2',medium:'English',subject:'Mathematics',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=47728',externalOfficial:true},
+ {id:'ETH-47760',filename:'Eg06_Mat_TP3_12_NWP_2024.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2024',term:'Term 3',medium:'English',subject:'Mathematics',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=47760',externalOfficial:true},
+ {id:'ETH-48564',filename:'Eg6_Mat_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2025',term:'Term 2',medium:'English',subject:'Mathematics',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48564',externalOfficial:true},
+ {id:'ETH-47729',filename:'Eg06_Sci_TP2_12_NWP_2024.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2024',term:'Term 2',medium:'English',subject:'Science',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=47729',externalOfficial:true},
+ {id:'ETH-47762',filename:'Eg06_Sci_TP3_12_NWP_2024.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2024',term:'Term 3',medium:'English',subject:'Science',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=47762',externalOfficial:true},
+ {id:'ETH-48568',filename:'Eg6_Sci_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2025',term:'Term 2',medium:'English',subject:'Science',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48568',externalOfficial:true},
+ {id:'ETH-48561',filename:'Eg6_Hea_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2025',term:'Term 2',medium:'English',subject:'Health & Physical Education',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48561',externalOfficial:true},
+ {id:'ETH-48562',filename:'Eg6_Ict_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2025',term:'Term 2',medium:'English',subject:'ICT',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48562',externalOfficial:true},
+ {id:'ETH-48359',filename:'Sg6_Eng_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2025',term:'Term 2',medium:'English',subject:'English Language',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48359',externalOfficial:true},
+ {id:'ETH-48586',filename:'Eg7_Mat_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 7',year:'2025',term:'Term 2',medium:'English',subject:'Mathematics',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48586',externalOfficial:true},
+ {id:'ETH-48574',filename:'Eg7_Civi_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 7',year:'2025',term:'Term 2',medium:'English',subject:'Civic Education',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48574',externalOfficial:true},
+ {id:'ETH-48638',filename:'Eg07_Sci_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 7',year:'2025',term:'Term 2',medium:'English',subject:'Science',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48638',externalOfficial:true},
+ {id:'ETH-48452',filename:'Sg8_Eng_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 8',year:'2025',term:'Term 2',medium:'English',subject:'English Language',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48452',externalOfficial:true},
+ {id:'ETH-48596',filename:'Eg8_Mat_TP2_12_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 8',year:'2025',term:'Term 2',medium:'English',subject:'Mathematics',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48596',externalOfficial:true},
+ {id:'ETH-48598',filename:'Eg8_Sci_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 8',year:'2025',term:'Term 2',medium:'English',subject:'Science',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48598',externalOfficial:true},
+ {id:'ETH-48600',filename:'Eg8_WMu_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 8',year:'2025',term:'Term 2',medium:'English',subject:'Western Music (අපරදිග සංගීතය)',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48600',externalOfficial:true},
+ {id:'ETH-48497',filename:'Sg9_Eng_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 9',year:'2025',term:'Term 2',medium:'English',subject:'English Language',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48497',externalOfficial:true},
+ {id:'ETH-48636',filename:'Eg09_Sci_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 9',year:'2025',term:'Term 2',medium:'English',subject:'Science',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48636',externalOfficial:true},
+ {id:'ETH-48607',filename:'Eg9_Hea_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 9',year:'2025',term:'Term 2',medium:'English',subject:'Health & Physical Education',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48607',externalOfficial:true},
+ {id:'ETH-48275',filename:'Eg11_ICT_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 11',year:'2025',term:'Term 2',medium:'English',subject:'ICT',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48275',externalOfficial:true},
+ {id:'ETH-48219',filename:'Sg11_ELi_TP2_12_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 11',year:'2025',term:'Term 2',medium:'English',subject:'English Literature',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48219',externalOfficial:true},
+ {id:'ETH-48273',filename:'Eg11_Hea_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 11',year:'2025',term:'Term 2',medium:'English',subject:'Health & Physical Education',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48273',externalOfficial:true},
+ {id:'ETH-48268',filename:'Eg11_Citi_TP2_12_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 11',year:'2025',term:'Term 2',medium:'English',subject:'Civic Education',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48268',externalOfficial:true}
+];
 
 function uploadedPaperForDisplay(paper){
  const correction=VERIFIED_UPLOADED_DISPLAY_CORRECTIONS.get(paper.url);
@@ -166,9 +270,9 @@ function uploadedPaperForDisplay(paper){
 function confirmedUploadedPapers(criteria){
  const source=window.UPLOADED_PAPERS||[];
  const seen=new Set();
- return source.map(uploadedPaperForDisplay).filter(p=>{
+ return [...source.map(uploadedPaperForDisplay),...OFFICIAL_EXTERNAL_PAPERS].filter(p=>{
    const unclear=/unknown|needs review/i.test(p.institution)||p.year==='Unknown'||p.term==='Unknown'||p.subject==='Other';
-   if(unclear||UNAVAILABLE_UPLOADED_FILES.has(p.url)||seen.has(p.url)) return false;
+   if(unclear||(!p.externalOfficial&&UNAVAILABLE_UPLOADED_FILES.has(p.url))||seen.has(p.url)) return false;
    const matches=Object.entries(criteria).every(([key,value])=>p[key]===value);
    if(matches) seen.add(p.url);
    return matches;
@@ -188,7 +292,9 @@ function renderConfirmedPapers(records){
  }
  if(!records.length){list.innerHTML='';list.hidden=true;actions.hidden=false;return}
  list.hidden=false;actions.hidden=true;
- list.innerHTML=records.map((p,index)=>`<div class="confirmed-paper-item"><span class="confirmed-paper-name">Paper ${index+1} · Document ${p.id}</span><a class="btn btn-primary" target="_blank" rel="noopener" href="${p.url}">Open</a><a class="btn btn-green" download href="${p.url}">Download</a></div>`).join('');
+ list.innerHTML=records.map((p,index)=>p.externalOfficial
+   ? `<div class="confirmed-paper-item official-external-paper"><span class="confirmed-paper-name">Paper ${index+1} · ${p.filename}<br><span class="official-source-label">Official e-Thaksalawa source</span></span><a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="${p.url}">Official source</a></div>`
+   : `<div class="confirmed-paper-item"><span class="confirmed-paper-name">Paper ${index+1} · Document ${p.id}</span><a class="btn btn-primary" target="_blank" rel="noopener" href="${p.url}">Open</a><a class="btn btn-green" download href="${p.url}">Download</a></div>`).join('');
 }
 
 function updateResult(){
