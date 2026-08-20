@@ -262,6 +262,32 @@ const OFFICIAL_EXTERNAL_PAPERS=[
  {id:'ETH-48268',filename:'Eg11_Citi_TP2_12_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 11',year:'2025',term:'Term 2',medium:'English',subject:'Civic Education',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48268',externalOfficial:true}
 ];
 
+const OFFICIAL_EXTERNAL_DOWNLOAD_URLS=new Map([
+ ['ETH-47728','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/65444/mod_resource/content/2/Eg06_Mat_TP2_12_NWP_2024.pdf?forcedownload=1'],
+ ['ETH-47760','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/65597/mod_resource/content/2/Eg06_Mat_TP3_12_NWP_2024.pdf?forcedownload=1'],
+ ['ETH-48564','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66785/mod_resource/content/1/Eg6_Mat_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-47729','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/65445/mod_resource/content/2/Eg06_Sci_TP2_12_NWP_2024.pdf?forcedownload=1'],
+ ['ETH-47762','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/65599/mod_resource/content/2/Eg06_Sci_TP3_12_NWP_2024.pdf?forcedownload=1'],
+ ['ETH-48568','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66790/mod_resource/content/1/Eg6_Sci_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48561','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66782/mod_resource/content/1/Eg6_Hea_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48562','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66783/mod_resource/content/1/Eg6_Ict_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48359','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66433/mod_resource/content/2/Sg6_Eng_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48586','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66814/mod_resource/content/2/Eg7_Mat_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48574','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66798/mod_resource/content/2/Eg7_Civi_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48638','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66870/mod_resource/content/1/Eg07_Sci_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48452','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66658/mod_resource/content/2/Sg8_Eng_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48596','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66824/mod_resource/content/1/Eg8_Mat_TP2_12_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48598','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66826/mod_resource/content/1/Eg8_Sci_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48600','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66828/mod_resource/content/1/Eg8_WMu_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48497','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66704/mod_resource/content/1/Sg9_Eng_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48636','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66868/mod_resource/content/1/Eg09_Sci_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48607','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66835/mod_resource/content/1/Eg9_Hea_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48275','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66336/mod_resource/content/1/Eg11_ICT_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48219','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66277/mod_resource/content/1/Sg11_ELi_TP2_12_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48273','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66333/mod_resource/content/1/Eg11_Hea_TP2_12_ans_NWP_2025.pdf?forcedownload=1'],
+ ['ETH-48268','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/66328/mod_resource/content/1/Eg11_Citi_TP2_12_NWP_2025.pdf?forcedownload=1']
+]);
+
 function uploadedPaperForDisplay(paper){
  const correction=VERIFIED_UPLOADED_DISPLAY_CORRECTIONS.get(paper.url);
  return correction?{...paper,...correction}:paper;
@@ -293,7 +319,7 @@ function renderConfirmedPapers(records){
  if(!records.length){list.innerHTML='';list.hidden=true;actions.hidden=false;return}
  list.hidden=false;actions.hidden=true;
  list.innerHTML=records.map((p,index)=>p.externalOfficial
-   ? `<div class="confirmed-paper-item official-external-paper"><span class="confirmed-paper-name">Paper ${index+1} · ${p.filename}<br><span class="official-source-label">Official e-Thaksalawa source</span></span><a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="${p.url}">Official source</a></div>`
+   ? `<div class="confirmed-paper-item official-external-paper"><span class="confirmed-paper-name">Paper ${index+1} · ${p.filename}<br><span class="official-source-label">Official e-Thaksalawa source</span></span><a class="btn btn-primary" rel="noopener noreferrer" href="${OFFICIAL_EXTERNAL_DOWNLOAD_URLS.get(p.id)}">Download official PDF</a></div>`
    : `<div class="confirmed-paper-item"><span class="confirmed-paper-name">Paper ${index+1} · Document ${p.id}</span><a class="btn btn-primary" target="_blank" rel="noopener" href="${p.url}">Open</a><a class="btn btn-green" download href="${p.url}">Download</a></div>`).join('');
 }
 
