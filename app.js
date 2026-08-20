@@ -234,8 +234,7 @@ const VERIFIED_UPLOADED_DISPLAY_CORRECTIONS=new Map([
  ['pdfs/grade6-11/uploaded-batch/D159_2023_Dancing.pdf',{source:'Provincial Papers',institution:'North Central Province',year:'2019',term:'Term 2',medium:'Sinhala',subject:'Geography'}]
 ]);
 
-// Official public resources are linked to their e-Thaksalawa pages only.
-// No external PDF is copied, downloaded, or exposed as a local download.
+// Verified official resources are stored unchanged in the dedicated local folder.
 const OFFICIAL_EXTERNAL_PAPERS=[
  {id:'ETH-47728',filename:'Eg06_Mat_TP2_12_NWP_2024.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2024',term:'Term 2',medium:'English',subject:'Mathematics',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=47728',externalOfficial:true},
  {id:'ETH-47760',filename:'Eg06_Mat_TP3_12_NWP_2024.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 6',year:'2024',term:'Term 3',medium:'English',subject:'Mathematics',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=47760',externalOfficial:true},
@@ -261,6 +260,8 @@ const OFFICIAL_EXTERNAL_PAPERS=[
  {id:'ETH-48273',filename:'Eg11_Hea_TP2_12_ans_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 11',year:'2025',term:'Term 2',medium:'English',subject:'Health & Physical Education',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48273',externalOfficial:true},
  {id:'ETH-48268',filename:'Eg11_Citi_TP2_12_NWP_2025.pdf',source:'Provincial Papers',institution:'North Western Province',grade:'Grade 11',year:'2025',term:'Term 2',medium:'English',subject:'Civic Education',url:'https://e-thaksalawa.moe.gov.lk/lcms/mod/resource/view.php?id=48268',externalOfficial:true}
 ];
+
+const OFFICIAL_LOCAL_PAPER_FOLDER='pdfs/grade6-11/official-ethaksalawa/';
 
 const OFFICIAL_EXTERNAL_DOWNLOAD_URLS=new Map([
  ['ETH-47728','https://e-thaksalawa.moe.gov.lk/lcms/pluginfile.php/65444/mod_resource/content/2/Eg06_Mat_TP2_12_NWP_2024.pdf?forcedownload=1'],
@@ -296,7 +297,13 @@ function uploadedPaperForDisplay(paper){
 function confirmedUploadedPapers(criteria){
  const source=window.UPLOADED_PAPERS||[];
  const seen=new Set();
- return [...source.map(uploadedPaperForDisplay),...OFFICIAL_EXTERNAL_PAPERS].filter(p=>{
+ const officialLocalPapers=OFFICIAL_EXTERNAL_PAPERS.map(p=>({
+   ...p,
+   url:`${OFFICIAL_LOCAL_PAPER_FOLDER}${p.filename}`,
+   externalOfficial:false,
+   localOfficial:true
+ }));
+ return [...source.map(uploadedPaperForDisplay),...officialLocalPapers].filter(p=>{
    const unclear=/unknown|needs review/i.test(p.institution)||p.year==='Unknown'||p.term==='Unknown'||p.subject==='Other';
    if(unclear||(!p.externalOfficial&&UNAVAILABLE_UPLOADED_FILES.has(p.url))||seen.has(p.url)) return false;
    const matches=Object.entries(criteria).every(([key,value])=>p[key]===value);
@@ -320,6 +327,8 @@ function renderConfirmedPapers(records){
  list.hidden=false;actions.hidden=true;
  list.innerHTML=records.map((p,index)=>p.externalOfficial
    ? `<div class="confirmed-paper-item official-external-paper"><span class="confirmed-paper-name">Paper ${index+1} · ${p.filename}<br><span class="official-source-label">Official e-Thaksalawa source</span></span><a class="btn btn-primary" rel="noopener noreferrer" href="${OFFICIAL_EXTERNAL_DOWNLOAD_URLS.get(p.id)}">Download official PDF</a></div>`
+   : p.localOfficial
+   ? `<div class="confirmed-paper-item official-external-paper"><span class="confirmed-paper-name">Paper ${index+1} · ${p.filename}<br><span class="official-source-label">Official e-Thaksalawa source</span></span><a class="btn btn-primary" target="_blank" rel="noopener" href="${p.url}">Open</a><a class="btn btn-green" download href="${p.url}">Download</a></div>`
    : `<div class="confirmed-paper-item"><span class="confirmed-paper-name">Paper ${index+1} · Document ${p.id}</span><a class="btn btn-primary" target="_blank" rel="noopener" href="${p.url}">Open</a><a class="btn btn-green" download href="${p.url}">Download</a></div>`).join('');
 }
 
